@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My List</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>TO DO List</h1>
+      <form>
+        <label for="event">Add Event:</label>
+        <input type="text" id="event" name="event">
+        <button type="button" onclick="addEvent()">Add</button>
+      </form>
+      <hr>
+      <h2>Upcoming Events:</h2>
+      <ul id="eventList"></ul>
+      <hr>
+      <h2>Completed Events:</h2>
+      <ul id="completedList"></ul>
+      <script src="index.js"></script>
+    </div>
+  </body>
+</html>
