@@ -1,44 +1,74 @@
-// Create an array to store events
 let events = [];
+let completedEvents = [];
+let undoneEvents = [];
 
-// Function to add a new event
 function addEvent() {
-  // Get the event name from the input field
-  let eventName = document.getElementById("event").value;
-  // Add the event to the events array
-  events.push(eventName);
-  // Clear the input field
-  document.getElementById("event").value = "";
-  // Update the event list on the page
-  updateEventList();
-}
+  const eventInput = document.getElementById("event");
+  const dateInput = document.getElementById("date");
 
-// Function to update the event list on the page
-function updateEventList() {
-  // Get the event list element from the page
-  let eventList = document.getElementById("eventList");
-  // Clear the event list element
-  eventList.innerHTML = "";
-  // Loop through the events array and add each event to the event list element
-  for (let i = 0; i < events.length; i++) {
-    let eventListItem = document.createElement("li");
-    eventListItem.innerHTML = events[i] + " <button onclick='completeEvent(" + i + ")'>Complete</button>";
-    eventList.appendChild(eventListItem);
+  if (eventInput.value === "" || dateInput.value === "") {
+    alert("Please enter an event and date");
+  } else {
+    const event = {
+      name: eventInput.value,
+      date: dateInput.value,
+    };
+
+    events.push(event);
+    const eventList = document.getElementById("eventList");
+    const eventItem = document.createElement("li");
+    eventItem.innerHTML = `${event.name} - ${event.date}`;
+    const completeButton = document.createElement("button");
+    completeButton.innerHTML = "Complete";
+    completeButton.onclick = function () {
+      completeEvent(event);
+    };
+    eventItem.appendChild(completeButton);
+    eventList.appendChild(eventItem);
+
+    const undoneList = document.getElementById("undoneList");
+    const undoneItem = document.createElement("li");
+    undoneItem.innerHTML = `${event.name} - ${event.date}`;
+    undoneList.appendChild(undoneItem);
+
+    eventInput.value = "";
+    dateInput.value = "";
   }
 }
 
-// Function to mark an event as completed
-function completeEvent(index) {
-  // Remove the completed event from the events array
-  let completedEvent = events.splice(index, 1)[0];
-  // Add the completed event to the completed list on the page
-  let completedList = document.getElementById("completedList");
-  let completedListItem = document.createElement("li");
-  completedListItem.innerHTML = completedEvent;
-  completedList.appendChild(completedListItem);
-  // Update the event list on the page
-  updateEventList();
+function completeEvent(event) {
+  completedEvents.push(event);
+  const eventList = document.getElementById("eventList");
+  const completedList = document.getElementById("completedList");
+  for (let i = 0; i < eventList.children.length; i++) {
+    const eventItem = eventList.children[i];
+    if (eventItem.innerHTML.startsWith(event.name)) {
+      eventList.removeChild(eventItem);
+      completedList.appendChild(eventItem);
+      const completeButton = eventItem.lastChild;
+      eventItem.removeChild(completeButton);
+      break;
+    }
+  }
+
+  const undoneList = document.getElementById("undoneList");
+  for (let i = 0; i < undoneList.children.length; i++) {
+    const undoneItem = undoneList.children[i];
+    if (undoneItem.innerHTML.startsWith(event.name)) {
+      undoneList.removeChild(undoneItem);
+      break;
+    }
+  }
 }
 
-// Call the updateEventList function when the page loads
-updateEventList();
+function updateUndoneEvents() {
+  const today = new Date().toISOString().slice(0, 10);
+  undoneEvents = events.filter((event) => event.date >= today);
+  const undoneList = document.getElementById("undoneList");
+  undoneList.innerHTML = "";
+  undoneEvents.forEach((event) => {
+    const undoneItem = document.createElement("li");
+    undoneItem.innerHTML = `${event.name} - ${event.date}`;
+    undoneList.appendChild(undoneItem);
+  });
+}

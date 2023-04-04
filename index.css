@@ -1,75 +1,124 @@
-body {
-    background-color: #201915;
-    font-family: Arial, sans-serif;
-    text-align: center;
+
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #35000034;
+    margin: 0;
+    font-family: sans-serif;
   }
   
   .container {
-    margin: 0 auto;
-    max-width: 500px;
-    background-color: #fff;
+    max-width: 600px;
+    margin: 50px auto 0;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   
   h1 {
-    color: #240a00;
+    text-align: center;
+    margin-top: 0;
+    color: #000000;
+  }
+  
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
   
   label {
-    display: inline-block;
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"] {
-    padding: 10px;
-    width: 70%;
-    border-radius: 5px;
-    border: none;
-    background-color: #f8f8f8;
     margin-right: 10px;
+    font-weight: bold;
+    color: #000000;
   }
   
-  button[type="button"] {
+  input[type="text"],
+  input[type="date"] {
+    flex: 1;
     padding: 10px;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    background-color: #933c0d;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
   }
   
-  button[type="button"]:hover {
-    background-color: #933c0d;
+  button {
+    padding: 10px;
+    background: radial-gradient(590px at 8.2% 13.8%, rgb(18, 35, 60) 0%, rgb(187, 187, 187) 90%);
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #502c2cc4;
+  }
+  
+  hr {
+    border: none;
+    border-top: 1px solid #f10000;
+    margin: 20px 0;
+  }
+  
+  h2 {
+    color: #946e45;
+    font-size: 20px;
+    margin-top: 30px;
   }
   
   ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
     margin: 0;
   }
   
   li {
-    margin-bottom: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
   }
   
-  .completed {
-    text-decoration: line-through;
-    color: #ccc;
+  li:last-child {
+    border-bottom: none;
   }
   
-  .delete {
-    color: #ff6347;
+  li button {
+    padding: 5px;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 12px;
+    border-radius: 4px;
+    border: none;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: background-color 0.3s ease;
   }
   
-  .delete:hover {
-    transform: scale(1.2);
+  li button:hover {
+    background-color: #2c3e50;
+  }
+  
+  @media screen and (max-width: 480px) {
+    form {
+      flex-direction: column;
+    }
+  
+    label {
+      margin-bottom: 10px;
+    }
+  
+    input[type="text"],
+    input[type="date"],
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
   }
   

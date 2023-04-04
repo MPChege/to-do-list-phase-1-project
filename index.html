@@ -10,6 +10,8 @@
       <form>
         <label for="event">Add Event:</label>
         <input type="text" id="event" name="event">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date">
         <button type="button" onclick="addEvent()">Add</button>
       </form>
       <hr>
@@ -18,6 +20,8 @@
       <hr>
       <h2>Completed Events:</h2>
       <ul id="completedList"></ul>
+      <h2>Not Yet:</h2>
+      <ul id="undoneList"></ul>
       <script src="index.js"></script>
     </div>
   </body>
